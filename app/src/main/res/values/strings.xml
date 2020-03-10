@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Plenti Full</string>
     <string name="title_home">Home</string>
+    <string name="favourites_nav_text">Favourites</string>
+    <string name="roulette_nav_text">Recipe Roulette</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
