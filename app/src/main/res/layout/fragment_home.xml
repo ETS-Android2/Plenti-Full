@@ -89,7 +89,7 @@
                 android:layout_width="206dp"
                 android:layout_height="200dp"
                 android:scaleType="fitXY"
-                app:srcCompat="@drawable/porkButton" />
+                app:srcCompat="@drawable/porkbutton" />
 
             <ImageView
                 android:id="@+id/porkImage"
@@ -110,7 +110,7 @@
                 android:layout_width="206dp"
                 android:layout_height="200dp"
                 android:scaleType="fitXY"
-                app:srcCompat="@drawable/seafoodButton" />
+                app:srcCompat="@drawable/seafoodbutton" />
 
         </GridLayout>
     </ScrollView>
