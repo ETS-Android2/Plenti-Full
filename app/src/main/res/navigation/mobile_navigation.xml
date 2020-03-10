@@ -7,8 +7,17 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.plenti_full.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        android:name="androidx.fragment.app.Fragment"
+        android:label="@string/title_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_categoryFragment"
+            app:destination="@+id/categoryFragment"
+            app:popUpTo="@+id/navigation_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/categoryFragment"
+        android:name="com.example.plenti_full.Fragments.CategoryFragment"
+        android:label="Placeholder"
+        tools:layout="@layout/fragment_category" />
 
 </navigation>

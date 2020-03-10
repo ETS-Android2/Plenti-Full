@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.example.plenti_full.Javabeans.Recipe;
+
 import java.util.ArrayList;
 
 /**
@@ -114,6 +116,21 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     /*
     RETRIEVE RECORDS
      */
+    public ArrayList<Recipe> getAllRecipes(){
+        SQLiteDatabase db  = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_RECIPES ,
+                null);
+        ArrayList<Recipe> recipes = new ArrayList<>();
+        while(cursor.moveToNext()) {
+            recipes.add(new Recipe(
+                    cursor.getString(1),
+                    cursor.getString(2),
+                    cursor.getInt(4)));
+        }
+        db.close();
+        return recipes;
+    }
+
 
 
 
