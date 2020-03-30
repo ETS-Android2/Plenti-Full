@@ -3,13 +3,10 @@ package com.example.plenti_full.Javabeans;
 public class Recipe {
 
     private String name;
-    private String description;
+    private String image;
 
-    private int image;
-
-    public Recipe(String name, String description, int image) {
+    public Recipe(String name, String image) {
         this.name = name;
-        this.description = description;
         this.image = image;
     }
 
@@ -21,12 +18,12 @@ public class Recipe {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
+    public String getImage() {
+        return image;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
 
+    public void setImage(String image) {
+        this.image = image;
+    }
 }

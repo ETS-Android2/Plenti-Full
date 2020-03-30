@@ -1,6 +1,7 @@
 package com.example.plenti_full;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,9 +11,20 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+
+import com.example.plenti_full.API.RecipeSingleton;
 import com.example.plenti_full.Javabeans.Recipe;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+
 
 
 /**
@@ -44,13 +56,16 @@ public class CustomCategoryAdapter extends RecyclerView.Adapter<CustomCategoryAd
      * Bind values to the POJO getters
      */
     @Override
-    public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final CustomViewHolder holder, int position) {
 
-            Recipe recipeItem = recipes.get(position);
-            holder.name.setText(recipeItem.getName());
-            holder.description.setText(recipeItem.getDescription());
+        final Recipe recipeItem = recipes.get(position);
 
-            }
+        holder.name.setText(recipeItem.getName());
+        holder.image.setText(recipeItem.getImage());
+
+
+
+    }
 
     @Override
     public int getItemCount() {
@@ -60,8 +75,7 @@ public class CustomCategoryAdapter extends RecyclerView.Adapter<CustomCategoryAd
     class CustomViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         protected TextView name;
-        protected TextView description;
-        protected ImageView image;
+        protected TextView image;
 
 
         /**
@@ -70,15 +84,13 @@ public class CustomCategoryAdapter extends RecyclerView.Adapter<CustomCategoryAd
         public CustomViewHolder(View view){
             super(view);
             this.name = view.findViewById(R.id.recipeItemName);
-            this.description = view.findViewById(R.id.recipeItemDescription);
-            this.image = view.findViewById(R.id.recipeItemImage);
+            this.image = view.findViewById(R.id.recipeItemName2);
             image.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
                 }
             });
-            description.setOnClickListener(this);
             name.setOnClickListener(this);
         }
 
