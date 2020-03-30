@@ -2,11 +2,13 @@
 <resources>
     <color name="colorPrimary">#fb8c00</color>
     <color name="colorPrimaryDark">#c25e00</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorAccent">#784742</color>
     <color name="black">#000000</color>
     <color name="grey">#363333</color>
     <color name="lightgrey">#BBB0B0</color>
     <color name="white">#FFFFFF</color>
-    <color name="BottomNavBarColor">#cddc39</color>
+    <color name="BottomNavBarColor">#E8D496</color>
     <color name="recipebackgroundColour">#F6E9A8</color>
+    <color name="topBar">#AD4132</color>
+
 </resources>

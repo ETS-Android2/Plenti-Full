@@ -3,6 +3,7 @@ package com.example.plenti_full.Fragments;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -41,6 +42,7 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
         final View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         final TextView recipeName = view.findViewById(R.id.recipeItemName);
