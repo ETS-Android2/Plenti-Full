@@ -33,6 +33,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
      */
     public static final String TABLE_RECIPES = "recipes";
 
+    public static final String TABLE_MEAL = "meals";
+
+
     /*
     Column Names
      */
@@ -62,6 +65,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public static final String COLUMN_INGREDIENT_18 = "ingredient18";
     public static final String COLUMN_INGREDIENT_19 = "ingredient19";
     public static final String COLUMN_INGREDIENT_20 = "ingredient20";
+
+
+    public static final String COLUMN_IMAGE = "image";
+    public static final String COLUMN_DESCRIPTION = "description";
 
 
 
@@ -95,13 +102,18 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             + COLUMN_VIDEO + " TEXT)";
 
 
+    public static final String CREATE_MEAL_TABLE = "CREATE TABLE " +
+            TABLE_MEAL + " (" + COLUMN_ID + " INTEGER PRIMARY KEY," +
+            COLUMN_NAME + " TEXT," + COLUMN_IMAGE + " TEXT)";
+
+
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(CREATE_RECIPE_TABLE);
+        db.execSQL(CREATE_MEAL_TABLE);
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -111,21 +123,45 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     /*
     INSERT RECORDS
      */
+    public void addRecipe(Recipe recipe){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_NAME, recipe.getName());
+        values.put(COLUMN_IMAGE, recipe.getImage());
+        db.insert(TABLE_MEAL, null, values);
+        db.close();
+    }
+
 
 
     /*
     RETRIEVE RECORDS
      */
+    public Recipe getRecipe(int id){
+        SQLiteDatabase db  = this.getReadableDatabase();
+        Recipe recipe = null;
+        Cursor cursor = db.query(TABLE_MEAL, new String[]{COLUMN_ID,
+                        COLUMN_NAME, COLUMN_IMAGE}, COLUMN_ID + "= ?",
+                new String[]{String.valueOf(id)}, null, null, null);
+        if(cursor.moveToFirst()){
+            recipe = new Recipe(
+                    cursor.getString(0),
+                    cursor.getString(1));
+        }
+        db.close();
+        return recipe;
+    }
+
+
     public ArrayList<Recipe> getAllRecipes(){
         SQLiteDatabase db  = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_RECIPES ,
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_MEAL ,
                 null);
         ArrayList<Recipe> recipes = new ArrayList<>();
         while(cursor.moveToNext()) {
             recipes.add(new Recipe(
-                    cursor.getString(1),
-                    cursor.getString(2),
-                    cursor.getInt(4)));
+                    cursor.getString(0),
+                    cursor.getString(1)));
         }
         db.close();
         return recipes;

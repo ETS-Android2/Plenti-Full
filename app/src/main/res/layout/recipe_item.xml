@@ -10,7 +10,6 @@
         android:id="@+id/cardItem"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:cardBackgroundColor="@color/grey"
         app:cardCornerRadius="15dp"
         app:cardElevation="1dp"
         app:cardUseCompatPadding="true"
@@ -31,21 +30,21 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:elevation="2dp"
-        app:layout_constraintBottom_toTopOf="@id/recipeItemName"
         app:layout_constraintEnd_toEndOf="@id/cardItem"
         app:layout_constraintStart_toStartOf="@id/cardItem"
         app:layout_constraintTop_toTopOf="@id/cardItem"
         app:srcCompat="@drawable/ic_home_black_24dp" />
 
+
     <TextView
-        android:id="@+id/recipeItemName"
-        android:layout_width="401dp"
-        android:layout_height="20dp"
+        android:id="@+id/recipeItemName2"
+        android:layout_width="383dp"
+        android:layout_height="29dp"
         android:elevation="2dp"
         android:fontFamily="serif"
         android:text="TextView"
         android:textAlignment="center"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@id/cardItem"
@@ -53,21 +52,20 @@
         app:layout_constraintTop_toBottomOf="@id/recipeItemImage" />
 
     <TextView
-        android:id="@+id/recipeItemDescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/recipeItemName"
+        android:layout_width="388dp"
+        android:layout_height="39dp"
         android:elevation="2dp"
         android:fontFamily="serif"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        android:paddingBottom="10dp"
         android:text="TextView"
         android:textAlignment="center"
-        android:textColor="@color/lightgrey"
-        android:textSize="14sp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@id/cardItem"
         app:layout_constraintStart_toStartOf="@id/cardItem"
-        app:layout_constraintTop_toBottomOf="@id/recipeItemName" />
+        app:layout_constraintTop_toBottomOf="@id/recipeItemName2" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

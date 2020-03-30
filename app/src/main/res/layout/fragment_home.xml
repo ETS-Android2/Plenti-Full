@@ -6,19 +6,19 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="562dp">
 
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:columnCount="2"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/eggImage"
                 android:layout_width="206dp"
                 android:layout_height="200dp"
-                android:scaleType="fitXY"
+                android:scaleType="center"
                 app:srcCompat="@drawable/breakfasteggs" />
 
             <ImageView
@@ -39,14 +39,14 @@
                 android:id="@+id/dessertImage"
                 android:layout_width="206dp"
                 android:layout_height="200dp"
-                android:scaleType="fitXY"
+                android:scaleType="center"
                 app:srcCompat="@drawable/dessertimage" />
 
             <ImageView
                 android:id="@+id/appImage"
                 android:layout_width="206dp"
                 android:layout_height="200dp"
-                android:scaleType="fitXY"
+                android:scaleType="center"
                 app:srcCompat="@drawable/appetizerphotoreal" />
 
             <ImageView
@@ -67,14 +67,14 @@
                 android:id="@+id/chickenImage"
                 android:layout_width="206dp"
                 android:layout_height="200dp"
-                android:scaleType="fitXY"
+                android:scaleType="center"
                 app:srcCompat="@drawable/chickendish" />
 
             <ImageView
                 android:id="@+id/beefImage"
                 android:layout_width="206dp"
                 android:layout_height="200dp"
-                android:scaleType="fitXY"
+                android:scaleType="center"
                 app:srcCompat="@drawable/beefimage" />
 
             <ImageView
@@ -95,7 +95,7 @@
                 android:id="@+id/porkImage"
                 android:layout_width="206dp"
                 android:layout_height="200dp"
-                android:scaleType="fitXY"
+                android:scaleType="centerCrop"
                 app:srcCompat="@drawable/pork" />
 
             <ImageView

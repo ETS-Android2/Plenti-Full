@@ -14,11 +14,20 @@
             android:id="@+id/action_navigation_home_to_categoryFragment"
             app:destination="@+id/categoryFragment"
             app:popUpTo="@+id/navigation_home" />
+        <action
+            android:id="@+id/action_navigation_home_to_blankFragment"
+            app:destination="@+id/blankFragment"
+            app:popUpTo="@+id/navigation_home" />
     </fragment>
     <fragment
         android:id="@+id/categoryFragment"
         android:name="com.example.plenti_full.Fragments.CategoryFragment"
         android:label="Placeholder"
+        tools:layout="@layout/fragment_category" />
+    <fragment
+        android:id="@+id/blankFragment"
+        android:name="com.example.plenti_full.Fragments.CategoryFragment"
+        android:label="fragment_blank"
         tools:layout="@layout/fragment_category" />
 
 </navigation>
