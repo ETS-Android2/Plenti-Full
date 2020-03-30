@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/recipebackgroundColour"
+    tools:context=".Fragments.DetailedRecipe">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/recipeImage"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/dessertimage"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/categoryImage"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginTop="4dp"
+                android:src="@drawable/categoryimage"
+                app:layout_constraintEnd_toStartOf="@+id/recipeCategory"
+                app:layout_constraintTop_toBottomOf="@+id/recipeTitle" />
+
+            <ImageView
+                android:id="@+id/areaImage"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="4dp"
+                android:src="@drawable/globeimage"
+                app:layout_constraintEnd_toStartOf="@+id/recipeArea"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recipeTitle" />
+
+            <ImageView
+                android:id="@+id/tagImage"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginTop="4dp"
+                android:src="@drawable/tagimage"
+                app:layout_constraintEnd_toStartOf="@+id/recipeTags"
+                app:layout_constraintTop_toBottomOf="@+id/recipeTitle" />
+
+            <TextView
+                android:id="@+id/recipeTitle"
+                android:layout_width="222dp"
+                android:layout_height="46dp"
+                android:fontFamily="@font/coiny"
+                android:text="RecipeTitle"
+                android:textAlignment="center"
+                android:textColor="@color/grey"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.502"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recipeImage" />
+
+            <ImageView
+                android:id="@+id/favouriteRecipe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="168dp"
+                android:src="@drawable/ic_favorite_border_black_24dp"
+                android:tint="@color/cardview_light_background"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.958"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/measurementsList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/youtubeBlurb">
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/youtubeBlurb"
+                android:layout_width="171dp"
+                android:layout_height="40dp"
+                android:text="Need more assitance? Watch a video tutorial!"
+                android:textAlignment="center"
+                android:textColor="@color/grey"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+
+            <LinearLayout
+                android:id="@+id/ingredientsList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toEndOf="@+id/measurementsList"
+                app:layout_constraintTop_toBottomOf="@+id/youtubeBlurb"></LinearLayout>
+
+            <TextView
+                android:id="@+id/recipeCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:background="@color/BottomNavBarColor"
+                android:text="Vegetarian"
+                app:layout_constraintEnd_toStartOf="@+id/tagImage"
+                app:layout_constraintTop_toBottomOf="@+id/recipeTitle" />
+
+            <TextView
+                android:id="@+id/recipeArea"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:background="@color/BottomNavBarColor"
+                android:text="Italian"
+                app:layout_constraintEnd_toStartOf="@+id/categoryImage"
+                app:layout_constraintTop_toBottomOf="@+id/recipeTitle" />
+
+            <TextView
+                android:id="@+id/recipeTags"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="84dp"
+                android:background="@color/BottomNavBarColor"
+                android:text="Pasta,Curry"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recipeTitle" />
+
+            <TextView
+                android:id="@+id/cookInstructionsTitle"
+                android:layout_width="224dp"
+                android:layout_height="46dp"
+                android:fontFamily="@font/coiny"
+                android:text="TextView"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.491"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ingredientsList" />
+
+            <TextView
+                android:id="@+id/cookInstructions"
+                android:layout_width="412dp"
+                android:layout_height="216dp"
+                android:text="TextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cookInstructionsTitle" />
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/videoimage"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recipeCategory" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

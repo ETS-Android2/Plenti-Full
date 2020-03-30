@@ -8,4 +8,5 @@
     <color name="lightgrey">#BBB0B0</color>
     <color name="white">#FFFFFF</color>
     <color name="BottomNavBarColor">#cddc39</color>
+    <color name="recipebackgroundColour">#F6E9A8</color>
 </resources>
