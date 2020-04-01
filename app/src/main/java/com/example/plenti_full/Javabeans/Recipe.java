@@ -1,11 +1,22 @@
 package com.example.plenti_full.Javabeans;
 
-public class Recipe {
+import android.widget.ImageView;
 
+import com.squareup.picasso.Picasso;
+
+public class Recipe {
+    private int id;
     private String name;
     private String image;
+    private ImageView imageView;
 
     public Recipe(String name, String image) {
+        this.name = name;
+        this.image = image;
+    }
+
+    public Recipe(int id, String name, String image) {
+        this.id = id;
         this.name = name;
         this.image = image;
     }
@@ -25,5 +36,10 @@ public class Recipe {
 
     public void setImage(String image) {
         this.image = image;
+        //Picasso.get().load(image).into(imageView);
+    }
+
+    public int getId() {
+        return id;
     }
 }

@@ -145,7 +145,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 new String[]{String.valueOf(id)}, null, null, null);
         if(cursor.moveToFirst()){
             recipe = new Recipe(
-                    cursor.getString(0),
+                    cursor.getString(2),
                     cursor.getString(1));
         }
         db.close();
@@ -160,8 +160,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         ArrayList<Recipe> recipes = new ArrayList<>();
         while(cursor.moveToNext()) {
             recipes.add(new Recipe(
-                    cursor.getString(0),
-                    cursor.getString(1)));
+                    cursor.getString(1),
+                    cursor.getString(2)));
         }
         db.close();
         return recipes;
@@ -175,12 +175,31 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     /*
         UPDATE RECORDS
     */
-
+    public int updateRecipe(Recipe recipe){
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_NAME, recipe.getName());
+        values.put(COLUMN_IMAGE, recipe.getImage());
+        return db.update(TABLE_MEAL, values, COLUMN_ID + "=?",
+                new String[]{String.valueOf(recipe.getId())});
+    }
 
 
     /*
         DELETE RECORDS
      */
+    public void deleteRecipe(int recipe){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_MEAL, COLUMN_ID + " = ?",
+                new String[]{String.valueOf(recipe)});
+        db.close();
+    }
+
+    public void deleteAllRecipes() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("delete from "+ TABLE_MEAL);
+    }
+
 
 
 }

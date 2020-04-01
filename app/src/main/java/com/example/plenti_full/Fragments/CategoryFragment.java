@@ -30,17 +30,19 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import static com.example.plenti_full.Fragments.HomeFragment.url;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class CategoryFragment extends Fragment {
+
     String name;
     String url2;
     int spanCount = 2;
+    String url;
     ArrayList<Recipe> recipes;
+
 
     public CategoryFragment() {
         // Required empty public constructor
@@ -52,55 +54,14 @@ public class CategoryFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_category, container, false);
-        DatabaseHandler db = new DatabaseHandler(getContext());
+        final DatabaseHandler db = new DatabaseHandler(getContext());
         recipes = db.getAllRecipes();
-        final ImageView imageView = view.findViewById(R.id.recipeItemImage);
 
-
-
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            JSONArray jsonArray = response.getJSONArray("meals");
-
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                JSONObject category = jsonArray.getJSONObject(i);
-
-
-                                name = category.getString("strMeal");
-                                url2 = category.getString("strMealThumb");
-                                //Picasso.get().load(url2).into(imageView);
-                                Recipe recipe = new Recipe(name, url2);
-                                DatabaseHandler db = new DatabaseHandler(getContext());
-                                if(db.getAllRecipes().size() > jsonArray.length() - 1) {
-
-
-                                } else {
-
-                                    db.addRecipe(recipe);
-                                }
-
-                                Log.d("TEST",  category.getString("strMeal") + "\n" + category.getString("strMeal") + "<<- INFO");
-
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                System.out.println(error.getLocalizedMessage());
-            }
-        });
-
-        RecipeSingleton.getInstance(getContext()).getRequestQueue().add(request);
         CustomCategoryAdapter adapter = new CustomCategoryAdapter(recipes, getContext());
         RecyclerView recyclerView = view.findViewById(R.id.categoryRecyclerView);
         recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), spanCount));
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+
         return view;
     }
 

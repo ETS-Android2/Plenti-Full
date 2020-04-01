@@ -1,6 +1,7 @@
 package com.example.plenti_full;
 
 import android.content.Context;
+import android.media.Image;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,20 +12,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-
-import com.example.plenti_full.API.RecipeSingleton;
 import com.example.plenti_full.Javabeans.Recipe;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-
 
 
 /**
@@ -32,8 +23,11 @@ import java.util.ArrayList;
 
  */
 public class CustomCategoryAdapter extends RecyclerView.Adapter<CustomCategoryAdapter.CustomViewHolder> {
+    String name;
+    String url2;
     private ArrayList<Recipe> recipes;
     private Context context;
+    ImageView imageView;
 
 
     public CustomCategoryAdapter(ArrayList<Recipe> recipes, Context context){
@@ -49,6 +43,8 @@ public class CustomCategoryAdapter extends RecyclerView.Adapter<CustomCategoryAd
     public CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recipe_item, parent, false);
+        imageView = view.findViewById(R.id.recipeItemImage);
+
         return new CustomViewHolder(view);
     }
 
@@ -59,11 +55,11 @@ public class CustomCategoryAdapter extends RecyclerView.Adapter<CustomCategoryAd
     public void onBindViewHolder(@NonNull final CustomViewHolder holder, int position) {
 
         final Recipe recipeItem = recipes.get(position);
+        Log.d("TEST", recipeItem.getName() + "  -  " + recipeItem.getId());
+        Picasso.get().load(recipeItem.getImage())
+                .resize(280, 280).centerCrop().into(imageView);
 
         holder.name.setText(recipeItem.getName());
-        holder.image.setText(recipeItem.getImage());
-
-
 
     }
 
@@ -75,7 +71,7 @@ public class CustomCategoryAdapter extends RecyclerView.Adapter<CustomCategoryAd
     class CustomViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         protected TextView name;
-        protected TextView image;
+        protected ImageView image;
 
 
         /**
@@ -84,19 +80,24 @@ public class CustomCategoryAdapter extends RecyclerView.Adapter<CustomCategoryAd
         public CustomViewHolder(View view){
             super(view);
             this.name = view.findViewById(R.id.recipeItemName);
-            this.image = view.findViewById(R.id.recipeItemName2);
-            image.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                }
-            });
+            this.image = view.findViewById(R.id.recipeItemImage);
+            image.setOnClickListener(this);
             name.setOnClickListener(this);
         }
 
         //When item is clicked
         public void onClick(View v) {
-
+            Log.d("TEST", "Recipe Clicked!");
         }
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+
+    }
+
+    public int getItemViewType(int position) {
+        return position;
     }
 }
