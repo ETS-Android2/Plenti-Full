@@ -70,7 +70,7 @@ public class HomeFragment extends Fragment {
                 url = "https://www.themealdb.com/api/json/v1/1/filter.php?c=Breakfast";
                 Log.d("TEST", url + "<---- URL!");
 
-                TestMethod(url, v);
+                navigate(v);
             }
         });
 
@@ -82,7 +82,7 @@ public class HomeFragment extends Fragment {
                 url = "https://www.themealdb.com/api/json/v1/1/filter.php?c=Dessert";
                 Log.d("TEST", url + "<---- URL!");
 
-                TestMethod(url, v);
+                navigate(v);
             }
         });
 
@@ -95,7 +95,7 @@ public class HomeFragment extends Fragment {
                 url = "https://www.themealdb.com/api/json/v1/1/filter.php?c=Starter";
                 Log.d("TEST", url + "<---- URL!");
 
-                TestMethod(url, v);
+                navigate(v);
             }
         });
 
@@ -108,7 +108,7 @@ public class HomeFragment extends Fragment {
                 url = "https://www.themealdb.com/api/json/v1/1/filter.php?c=Chicken";
                 Log.d("TEST", url + "<---- URL!");
 
-                TestMethod(url, v);
+                navigate(v);
             }
         });
 
@@ -121,7 +121,7 @@ public class HomeFragment extends Fragment {
                 url = "https://www.themealdb.com/api/json/v1/1/filter.php?c=Beef";
                 Log.d("TEST", url + "<---- URL!");
 
-                TestMethod(url, v);
+                navigate(v);
             }
         });
 
@@ -134,7 +134,7 @@ public class HomeFragment extends Fragment {
                 url = "https://www.themealdb.com/api/json/v1/1/filter.php?c=Pork";
                 Log.d("TEST", url + "<---- URL!");
 
-                TestMethod(url, v);
+                navigate(v);
             }
         });
 
@@ -145,9 +145,10 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
 
                 url = "https://www.themealdb.com/api/json/v1/1/filter.php?c=Seafood";
-                Log.d("TEST", url + "<---- URL!");
+                Log.d("TEST", url );
 
-                TestMethod(url, v);
+                navigate(v);
+                //TestMethod(url, v);
             }
         });
 
@@ -157,44 +158,14 @@ public class HomeFragment extends Fragment {
 
         return view;
     }
-
-
-    public void TestMethod(String url, View view) {
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            JSONArray jsonArray = response.getJSONArray("meals");
-                            DatabaseHandler db = new DatabaseHandler(getContext());
-
-                            db.deleteAllRecipes();
-
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                JSONObject category = jsonArray.getJSONObject(i);
-
-
-                                name = category.getString("strMeal");
-                                url2 = category.getString("strMealThumb");
-                                db.addRecipe(new Recipe(name, url2));
-                                Log.d("TEST",  category.getString("strMeal") + "\n" + category.getString("strMealThumb") + "<<- INFO");
-
-
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                System.out.println(error.getLocalizedMessage());
-            }
-        });
-
-        RecipeSingleton.getInstance(getContext()).getRequestQueue().add(request);
+    public void navigate(View view) {
         Navigation.findNavController(view).navigate(R.id.categoryFragment);
     }
+
+//    public void TestMethod(String url, View view) {
+//
+//        Navigation.findNavController(view).navigate(R.id.categoryFragment);
+//    }
 
 
 

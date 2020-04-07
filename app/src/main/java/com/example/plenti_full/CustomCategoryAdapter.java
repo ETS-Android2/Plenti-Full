@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.plenti_full.Javabeans.Recipe;
@@ -55,7 +56,6 @@ public class CustomCategoryAdapter extends RecyclerView.Adapter<CustomCategoryAd
     public void onBindViewHolder(@NonNull final CustomViewHolder holder, int position) {
 
         final Recipe recipeItem = recipes.get(position);
-        Log.d("TEST", recipeItem.getName() + "  -  " + recipeItem.getId());
         Picasso.get().load(recipeItem.getImage())
                 .resize(280, 280).centerCrop().into(imageView);
 
@@ -87,6 +87,7 @@ public class CustomCategoryAdapter extends RecyclerView.Adapter<CustomCategoryAd
 
         //When item is clicked
         public void onClick(View v) {
+            Navigation.findNavController(v).navigate(R.id.detailedRecipe);
             Log.d("TEST", "Recipe Clicked!");
         }
     }
