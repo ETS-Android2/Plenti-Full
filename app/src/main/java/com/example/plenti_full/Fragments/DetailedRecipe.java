@@ -32,6 +32,7 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
+import static com.example.plenti_full.CustomCategoryAdapter.mealName;
 import static java.security.AccessController.getContext;
 
 /**
@@ -73,13 +74,14 @@ public class DetailedRecipe extends Fragment {
         final DatabaseHandler db = new DatabaseHandler(getContext());
         final ArrayList<Recipe> recipes = db.getAllRecipes();
 
+        String idAppen = recipes.get(0).getName();
 
 
 
 
-        url = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=52772";
+        url = "https://www.themealdb.com/api/json/v1/1/search.php?s=" + mealName;
 
-
+        Log.d("TEST", url);
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
@@ -95,7 +97,7 @@ public class DetailedRecipe extends Fragment {
                             image = category.getString("strMealThumb");
                             recipeImage = view.findViewById(R.id.recipeImage);
                             Picasso.get().load(image)
-                                    .resize(600, 600).centerCrop().into(recipeImage);
+                                    .resize(280, 280).centerCrop().into(recipeImage);
 
                             title = category.getString("strMeal");
                             recipeTitle = view.findViewById(R.id.recipeTitle);
@@ -117,7 +119,7 @@ public class DetailedRecipe extends Fragment {
                             instructions = view.findViewById(R.id.cookInstructions);
                             instructions.setText(instructionsString);
 
-                            
+
 
 
                             for (int i = 0; i < stepper; i++) {

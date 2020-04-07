@@ -58,13 +58,13 @@
 
         <TextView
             android:id="@+id/recipeTitle"
-            android:layout_width="222dp"
+            android:layout_width="265dp"
             android:layout_height="46dp"
             android:fontFamily="@font/coiny"
             android:text="RecipeTitle"
             android:textAlignment="center"
             android:textColor="@color/grey"
-            android:textSize="24sp"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"

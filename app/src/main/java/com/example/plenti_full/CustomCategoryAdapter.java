@@ -24,8 +24,7 @@ import java.util.ArrayList;
 
  */
 public class CustomCategoryAdapter extends RecyclerView.Adapter<CustomCategoryAdapter.CustomViewHolder> {
-    String name;
-    String url2;
+    public static String mealName;
     private ArrayList<Recipe> recipes;
     private Context context;
     ImageView imageView;
@@ -88,6 +87,8 @@ public class CustomCategoryAdapter extends RecyclerView.Adapter<CustomCategoryAd
         //When item is clicked
         public void onClick(View v) {
             Navigation.findNavController(v).navigate(R.id.detailedRecipe);
+            DatabaseHandler db = new DatabaseHandler(context);
+            mealName = name.getText().toString();
             Log.d("TEST", "Recipe Clicked!");
         }
     }

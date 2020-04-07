@@ -74,7 +74,7 @@ public class CategoryFragment extends Fragment {
                                                            category.getString("strMealThumb"));
                                 recipes.add(recipe);
                                 db.addRecipe(recipe);
-                                Log.d("TEST",  category.getString("strMeal") + "\n" + category.getString("strMealThumb") + "<<- INFO");
+                                Log.d("TEST",  category.getString("idMeal") + category.getString("strMeal") + "\n" + category.getString("strMealThumb") + "<<- INFO");
 
 
                             }
