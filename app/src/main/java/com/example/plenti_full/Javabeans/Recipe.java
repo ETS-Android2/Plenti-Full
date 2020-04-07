@@ -5,7 +5,7 @@ import android.widget.ImageView;
 import com.squareup.picasso.Picasso;
 
 public class Recipe {
-    private int id;
+    private String id;
     private String name;
     private String image;
     private ImageView imageView;
@@ -15,7 +15,7 @@ public class Recipe {
         this.image = image;
     }
 
-    public Recipe(int id, String name, String image) {
+    public Recipe(String id, String name, String image) {
         this.id = id;
         this.name = name;
         this.image = image;
@@ -39,7 +39,7 @@ public class Recipe {
         //Picasso.get().load(image).into(imageView);
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 }

@@ -76,8 +76,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     /*
     CREATE TABLE STATEMENT
      */
-    public static final String CREATE_RECIPE_TABLE = "CREATE TABLE " +
-            TABLE_RECIPES + " (" + COLUMN_ID + " INTEGER PRIMARY KEY," +
+    public static final String CREATE_MEAL_TABLE = "CREATE TABLE " +
+            TABLE_MEAL + " (" + COLUMN_ID + " INTEGER PRIMARY KEY," +
             COLUMN_NAME + " TEXT," + COLUMN_CAT + " TEXT," + COLUMN_INSTRUCTIONS + " TEXT," + COLUMN_THUMB + " TEXT,"
             + COLUMN_INGREDIENT_1 + " TEXT,"
             + COLUMN_INGREDIENT_2 + " TEXT,"
@@ -102,8 +102,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             + COLUMN_VIDEO + " TEXT)";
 
 
-    public static final String CREATE_MEAL_TABLE = "CREATE TABLE " +
-            TABLE_MEAL + " (" + COLUMN_ID + " INTEGER PRIMARY KEY," +
+    public static final String CREATE_RECIPE_TABLE = "CREATE TABLE " +
+            TABLE_RECIPES + " (" + COLUMN_ID + " INTEGER PRIMARY KEY," +
             COLUMN_NAME + " TEXT," + COLUMN_IMAGE + " TEXT)";
 
 
@@ -113,7 +113,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(CREATE_MEAL_TABLE);
+        db.execSQL(CREATE_RECIPE_TABLE);
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -128,7 +128,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(COLUMN_NAME, recipe.getName());
         values.put(COLUMN_IMAGE, recipe.getImage());
-        db.insert(TABLE_MEAL, null, values);
+        db.insert(TABLE_RECIPES, null, values);
         db.close();
     }
 
@@ -140,7 +140,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public Recipe getRecipe(int id){
         SQLiteDatabase db  = this.getReadableDatabase();
         Recipe recipe = null;
-        Cursor cursor = db.query(TABLE_MEAL, new String[]{COLUMN_ID,
+        Cursor cursor = db.query(TABLE_RECIPES, new String[]{COLUMN_ID,
                         COLUMN_NAME, COLUMN_IMAGE}, COLUMN_ID + "= ?",
                 new String[]{String.valueOf(id)}, null, null, null);
         if(cursor.moveToFirst()){
@@ -155,7 +155,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public ArrayList<Recipe> getAllRecipes(){
         SQLiteDatabase db  = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_MEAL ,
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_RECIPES ,
                 null);
         ArrayList<Recipe> recipes = new ArrayList<>();
         while(cursor.moveToNext()) {
@@ -180,7 +180,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(COLUMN_NAME, recipe.getName());
         values.put(COLUMN_IMAGE, recipe.getImage());
-        return db.update(TABLE_MEAL, values, COLUMN_ID + "=?",
+        return db.update(TABLE_RECIPES, values, COLUMN_ID + "=?",
                 new String[]{String.valueOf(recipe.getId())});
     }
 
@@ -190,14 +190,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
      */
     public void deleteRecipe(int recipe){
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_MEAL, COLUMN_ID + " = ?",
+        db.delete(TABLE_RECIPES, COLUMN_ID + " = ?",
                 new String[]{String.valueOf(recipe)});
         db.close();
     }
 
     public void deleteAllRecipes() {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("delete from "+ TABLE_MEAL);
+        db.execSQL("delete from "+ TABLE_RECIPES);
     }
 
 
