@@ -25,7 +25,7 @@
             app:exitAnim="@anim/nav_default_exit_anim" />
         <action
             android:id="@+id/action_navigation_home_to_reciperoulette"
-            app:destination="@+id/reciperoulette"
+            app:destination="@+id/recipeRoulette"
             app:launchSingleTop="false" />
     </fragment>
     <fragment
@@ -44,9 +44,19 @@
         android:label="detailedRecipe"
         tools:layout="@layout/fragment_detailed_recipe" />
     <fragment
-        android:id="@+id/reciperoulette"
-        android:name="com.example.plenti_full.Reciperoulette"
-        android:label="fragment_reciperoulette"
+        android:id="@+id/recipeRoulette"
+        android:name="com.example.plenti_full.Fragments.RecipeRoulette"
+        android:label="recipeRoulette"
         tools:layout="@layout/fragment_reciperoulette" />
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="com.example.plenti_full.Fragments.FavoritesFragment"
+        android:label="fragment_favorites"
+        tools:layout="@layout/fragment_favorites" />
+    <fragment
+        android:id="@+id/randomRecipe"
+        android:name="com.example.plenti_full.Fragments.RandomRecipe"
+        android:label="fragment_random_recipe"
+        tools:layout="@layout/fragment_random_recipe" />
 
 </navigation>
