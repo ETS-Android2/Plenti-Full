@@ -3,6 +3,7 @@
     <string name="title_home">Home</string>
     <string name="favourites_nav_text">Favourites</string>
     <string name="roulette_nav_text">Recipe Roulette</string>
+    <string name="settings_nav_text">Settings</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -10,5 +11,10 @@
     <string name="roulette_title">Try your Luck!</string>
     <string name="youtubeBlurbText">Need more assitance? Watch a video tutorial!</string>
     <string name="roulettetext">Let lady luck decide what to make for dinner tonight!  If you\'re stuck in the same old meal routine and want to shake it up a bit but can\'t think of any ideas then why not give the wheel a spin and try one of these recipes! \\n Sure to satisfy any foodies craving and any gambler\'s, too!</string>
-    <string name="roulette_button_text">Spin!</string>
+    <string name="settings_button_one_text">Tutorial</string>
+    <string name="roulette_button_text">Spin</string>
+    <string name="settings_button_two_text">Spin</string>
+    <string name="settings_button_three_text">Spin</string>
+    <string name="settings_button_four_text">Credits</string>
+
 </resources>

@@ -27,6 +27,9 @@
             android:id="@+id/action_navigation_home_to_reciperoulette"
             app:destination="@+id/recipeRoulette"
             app:launchSingleTop="false" />
+        <action
+            android:id="@+id/action_navigation_home_to_settingsFragment2"
+            app:destination="@id/settingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/categoryFragment"
@@ -58,5 +61,10 @@
         android:name="com.example.plenti_full.Fragments.RandomRecipe"
         android:label="fragment_random_recipe"
         tools:layout="@layout/fragment_random_recipe" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.plenti_full.Fragments.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
 
 </navigation>

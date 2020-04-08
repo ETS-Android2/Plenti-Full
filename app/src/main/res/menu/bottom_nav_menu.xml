@@ -16,4 +16,9 @@
         android:icon="@drawable/ic_roulette"
         android:title="@string/roulette_nav_text" />
 
+    <item
+        android:id="@+id/settingsFragment"
+        android:icon="@drawable/ic_settings_black_24dp"
+        android:title="@string/settings_nav_text" />
+
 </menu>
