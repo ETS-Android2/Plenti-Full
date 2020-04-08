@@ -39,7 +39,7 @@
 
 
     <TextView
-        android:id="@+id/recipeItemName"
+        android:id="@+id/instructionStep"
         android:layout_width="194dp"
         android:layout_height="45dp"
         android:layout_marginStart="8dp"

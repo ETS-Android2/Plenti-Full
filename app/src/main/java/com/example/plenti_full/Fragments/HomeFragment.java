@@ -5,11 +5,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,21 +14,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.example.plenti_full.API.RecipeSingleton;
-import com.example.plenti_full.CustomCategoryAdapter;
 import com.example.plenti_full.DatabaseHandler;
 import com.example.plenti_full.Javabeans.Recipe;
 import com.example.plenti_full.R;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -55,7 +39,7 @@ public class HomeFragment extends Fragment {
         ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
         final View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        final TextView recipeName = view.findViewById(R.id.recipeItemName);
+        final TextView recipeName = view.findViewById(R.id.instructionStep);
         TextView recipeImage = view.findViewById(R.id.recipeItemImage);
 
 

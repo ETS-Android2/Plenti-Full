@@ -1,7 +1,6 @@
 package com.example.plenti_full;
 
 import android.content.Context;
-import android.media.Image;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -78,7 +77,7 @@ public class CustomCategoryAdapter extends RecyclerView.Adapter<CustomCategoryAd
          */
         public CustomViewHolder(View view){
             super(view);
-            this.name = view.findViewById(R.id.recipeItemName);
+            this.name = view.findViewById(R.id.instructionStep);
             this.image = view.findViewById(R.id.recipeItemImage);
             image.setOnClickListener(this);
             name.setOnClickListener(this);

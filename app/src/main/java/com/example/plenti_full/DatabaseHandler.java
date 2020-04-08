@@ -35,7 +35,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public static final String TABLE_MEAL = "meals";
 
-    public static final String TABLE_RECIPE_DETAILS = "recipedetails";
 
 
     /*
@@ -108,9 +107,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             TABLE_RECIPES + " (" + COLUMN_ID + " INTEGER PRIMARY KEY," +
             COLUMN_NAME + " TEXT," + COLUMN_IMAGE + " TEXT)";
 
-    public static final String CREATE_RECIPE_DETAIL_TABLE = "CREATE TABLE " +
-            TABLE_RECIPE_DETAILS + " (" + COLUMN_ID + " INTEGER PRIMARY KEY," +
-            COLUMN_NAME + " TEXT)";
 
 
     public DatabaseHandler(Context context) {
@@ -120,7 +116,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_RECIPE_TABLE);
-        db.execSQL(CREATE_RECIPE_DETAIL_TABLE);
 
     }
     @Override
@@ -140,13 +135,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void addRecipeDetail(String string){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(COLUMN_NAME, string.toString());
-        db.insert(TABLE_RECIPE_DETAILS, null, values);
-        db.close();
-    }
 
 
 
@@ -168,20 +156,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return recipe;
     }
 
-    public Recipe getRecipeDetail(int id){
-        SQLiteDatabase db  = this.getReadableDatabase();
-        Recipe recipe = null;
-        Cursor cursor = db.query(TABLE_RECIPE_DETAILS, new String[]{COLUMN_ID,
-                        COLUMN_NAME}, COLUMN_ID + "= ?",
-                new String[]{String.valueOf(id)}, null, null, null);
-        if(cursor.moveToFirst()){
-            recipe = new Recipe(
-                    cursor.getString(2),
-                    cursor.getString(1));
-        }
-        db.close();
-        return recipe;
-    }
 
 
     public ArrayList<Recipe> getAllRecipes(){
@@ -229,11 +203,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void deleteAllRecipes() {
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("delete from "+ TABLE_RECIPES);
-    }
-
-    public void deleteAllRecipeDetails() {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("delete from "+ TABLE_RECIPE_DETAILS);
     }
 
 
