@@ -53,5 +53,10 @@
         android:name="com.example.plenti_full.Fragments.RandomRecipe"
         android:label="fragment_random_recipe"
         tools:layout="@layout/fragment_random_recipe" />
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="com.example.plenti_full.Fragments.FavoritesFragment"
+        android:label="fragment_favorites"
+        tools:layout="@layout/fragment_favorites" />
 
 </navigation>

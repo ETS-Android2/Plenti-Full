@@ -7,7 +7,7 @@
         android:title="@string/title_home" />
 
     <item
-        android:id="@+id/categoryFragment"
+        android:id="@+id/favoritesFragment"
         android:icon="@drawable/ic_favorite_border_black_24dp"
         android:title="@string/favourites_nav_text" />
 
