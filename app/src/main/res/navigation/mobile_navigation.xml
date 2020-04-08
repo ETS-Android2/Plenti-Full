@@ -65,6 +65,20 @@
         android:id="@+id/settingsFragment"
         android:name="com.example.plenti_full.Fragments.SettingsFragment"
         android:label="fragment_settings"
-        tools:layout="@layout/fragment_settings" />
+        tools:layout="@layout/fragment_settings" >
+        <action
+            android:id="@+id/action_settingsFragment_to_tutorialViewPager"
+            app:destination="@id/tutorialViewPager" />
+    </fragment>
+    <fragment
+        android:id="@+id/tutorialLayoutFragment"
+        android:name="com.example.plenti_full.Fragments.TutorialLayoutFragment"
+        android:label="fragment_tutorial_layout"
+        tools:layout="@layout/fragment_tutorial_layout" />
+    <fragment
+        android:id="@+id/tutorialViewPager"
+        android:name="com.example.plenti_full.Fragments.TutorialViewPager"
+        android:label="fragment_tutorial_view_pager"
+        tools:layout="@layout/fragment_tutorial_view_pager" />
 
 </navigation>
