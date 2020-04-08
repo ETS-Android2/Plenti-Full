@@ -12,7 +12,7 @@
         android:title="@string/favourites_nav_text" />
 
     <item
-        android:id="@+id/reciperoulette"
+        android:id="@+id/recipeRoulette"
         android:icon="@drawable/ic_roulette"
         android:title="@string/roulette_nav_text" />
 
