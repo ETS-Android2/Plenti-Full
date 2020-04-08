@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/recipebackgroundColour"
     android:orientation="horizontal"
-    tools:context=".Fragments.DetailedRecipe">
+    tools:context=".Fragments.RandomRecipe">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,7 +16,7 @@
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/recipeImage"
+            android:id="@+id/randomRecipeImage"
             android:layout_width="0dp"
             android:layout_height="200dp"
             android:scaleType="centerCrop"
@@ -27,37 +27,37 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/categoryImage"
+            android:id="@+id/randomCategoryImage"
             android:layout_width="15dp"
             android:layout_height="15dp"
             android:layout_marginTop="4dp"
             android:src="@drawable/categoryimage"
-            app:layout_constraintEnd_toStartOf="@+id/recipeCategory"
-            app:layout_constraintStart_toEndOf="@id/recipeArea"
-            app:layout_constraintTop_toBottomOf="@+id/recipeTitle" />
+            app:layout_constraintEnd_toStartOf="@+id/randomRecipeCategory"
+            app:layout_constraintStart_toEndOf="@id/randomRecipeArea"
+            app:layout_constraintTop_toBottomOf="@+id/randomRecipeTitle" />
 
         <ImageView
-            android:id="@+id/areaImage"
+            android:id="@+id/randomAreaImage"
             android:layout_width="15dp"
             android:layout_height="15dp"
             android:layout_marginTop="4dp"
             android:src="@drawable/globeimage"
-            app:layout_constraintEnd_toStartOf="@+id/recipeArea"
-            app:layout_constraintStart_toStartOf="@id/recipeTitle"
-            app:layout_constraintTop_toBottomOf="@+id/recipeTitle" />
+            app:layout_constraintEnd_toStartOf="@+id/randomRecipeArea"
+            app:layout_constraintStart_toStartOf="@id/randomRecipeTitle"
+            app:layout_constraintTop_toBottomOf="@+id/randomRecipeTitle" />
 
         <ImageView
-            android:id="@+id/tagImage"
+            android:id="@+id/randomTagImage"
             android:layout_width="15dp"
             android:layout_height="15dp"
             android:layout_marginTop="4dp"
             android:src="@drawable/tagimage"
-            app:layout_constraintEnd_toStartOf="@+id/recipeTags"
-            app:layout_constraintStart_toEndOf="@id/recipeCategory"
-            app:layout_constraintTop_toBottomOf="@+id/recipeTitle" />
+            app:layout_constraintEnd_toStartOf="@+id/randomRecipeTags"
+            app:layout_constraintStart_toEndOf="@id/randomRecipeCategory"
+            app:layout_constraintTop_toBottomOf="@+id/randomRecipeTitle" />
 
         <TextView
-            android:id="@+id/recipeTitle"
+            android:id="@+id/randomRecipeTitle"
             android:layout_width="wrap_content"
             android:layout_height="46dp"
             android:fontFamily="@font/coiny"
@@ -68,10 +68,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recipeImage" />
+            app:layout_constraintTop_toBottomOf="@+id/randomRecipeImage" />
 
         <ImageView
-            android:id="@+id/favouriteRecipe"
+            android:id="@+id/randomFavouriteRecipe"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="168dp"
@@ -84,38 +84,38 @@
 
 
         <LinearLayout
-            android:id="@+id/measurementsList"
+            android:id="@+id/randomMeasurementsList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:orientation="vertical"
-            app:layout_constraintEnd_toStartOf="@id/ingredientsList"
+            app:layout_constraintEnd_toStartOf="@id/randomIngredientsList"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/youtubeBlurb">
+            app:layout_constraintTop_toBottomOf="@id/randomYoutubeBlurb">
 
 
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/ingredientsList"
+            android:id="@+id/randomIngredientsList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/measurementsList"
+            app:layout_constraintStart_toEndOf="@id/randomMeasurementsList"
 
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/youtubeBlurb">
+            app:layout_constraintTop_toBottomOf="@id/randomYoutubeBlurb">
 
         </LinearLayout>
 
 
         <TextView
-            android:id="@+id/youtubeBlurb"
+            android:id="@+id/randomYoutubeBlurb"
             android:layout_width="171dp"
             android:layout_height="40dp"
-            android:text="Need more assitance? Watch a video tutorial!"
+            android:text="@string/youtubeBlurbText"
             android:textAlignment="center"
             android:textColor="@color/grey"
             app:layout_constraintEnd_toEndOf="parent"
@@ -124,39 +124,39 @@
 
 
         <TextView
-            android:id="@+id/recipeCategory"
+            android:id="@+id/randomRecipeCategory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="12dp"
             android:background="@color/BottomNavBarColor"
             android:text="Vegetarian"
-            app:layout_constraintEnd_toStartOf="@+id/tagImage"
-            app:layout_constraintStart_toEndOf="@id/categoryImage"
-            app:layout_constraintTop_toBottomOf="@+id/recipeTitle" />
+            app:layout_constraintEnd_toStartOf="@+id/randomTagImage"
+            app:layout_constraintStart_toEndOf="@id/randomCategoryImage"
+            app:layout_constraintTop_toBottomOf="@+id/randomRecipeTitle" />
 
         <TextView
-            android:id="@+id/recipeArea"
+            android:id="@+id/randomRecipeArea"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="12dp"
             android:background="@color/BottomNavBarColor"
             android:text="Italian"
-            app:layout_constraintEnd_toStartOf="@+id/categoryImage"
-            app:layout_constraintStart_toEndOf="@id/areaImage"
-            app:layout_constraintTop_toBottomOf="@+id/recipeTitle" />
+            app:layout_constraintEnd_toStartOf="@+id/randomCategoryImage"
+            app:layout_constraintStart_toEndOf="@id/randomAreaImage"
+            app:layout_constraintTop_toBottomOf="@+id/randomRecipeTitle" />
 
         <TextView
-            android:id="@+id/recipeTags"
+            android:id="@+id/randomRecipeTags"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/BottomNavBarColor"
             android:text="Pasta,Curry"
-            app:layout_constraintEnd_toEndOf="@id/recipeTitle"
-            app:layout_constraintStart_toEndOf="@id/tagImage"
-            app:layout_constraintTop_toBottomOf="@+id/recipeTitle" />
+            app:layout_constraintEnd_toEndOf="@id/randomRecipeTitle"
+            app:layout_constraintStart_toEndOf="@id/randomTagImage"
+            app:layout_constraintTop_toBottomOf="@+id/randomRecipeTitle" />
 
         <TextView
-            android:id="@+id/cookInstructionsTitle"
+            android:id="@+id/randomCookInstructionsTitle"
             android:layout_width="224dp"
             android:layout_height="46dp"
             android:fontFamily="@font/coiny"
@@ -167,10 +167,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.491"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ingredientsList" />
+            app:layout_constraintTop_toBottomOf="@+id/randomIngredientsList" />
 
         <TextView
-            android:id="@+id/cookInstructions"
+            android:id="@+id/randomCookInstructions"
             android:layout_width="416dp"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
@@ -180,7 +180,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cookInstructionsTitle" />
+            app:layout_constraintTop_toBottomOf="@+id/randomCookInstructionsTitle" />
 
         <ImageView
             android:id="@+id/imageView4"
@@ -190,7 +190,7 @@
             android:src="@drawable/videoimage"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recipeCategory" />
+            app:layout_constraintTop_toBottomOf="@+id/randomRecipeCategory" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
 

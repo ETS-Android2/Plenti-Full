@@ -162,10 +162,6 @@ public class HomeFragment extends Fragment {
         Navigation.findNavController(view).navigate(R.id.categoryFragment);
     }
 
-//    public void TestMethod(String url, View view) {
-//
-//        Navigation.findNavController(view).navigate(R.id.categoryFragment);
-//    }
 
 
 
