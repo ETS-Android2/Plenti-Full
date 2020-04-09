@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -24,6 +26,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.plenti_full.Adapters.CustomInstructionAdapter;
 import com.example.plenti_full.DatabaseHandler;
 
+import com.example.plenti_full.Javabeans.Favorite;
 import com.example.plenti_full.Javabeans.Instruction;
 import com.example.plenti_full.Javabeans.Recipe;
 import com.example.plenti_full.R;
@@ -62,6 +65,7 @@ public class DetailedRecipe extends Fragment {
     private TextView tagsLabel;
     private TextView instructions;
     private ImageView youtubeButton;
+    private ImageView favoriteButton;
 
     public DetailedRecipe() {
         // Required empty public constructor
@@ -77,6 +81,8 @@ public class DetailedRecipe extends Fragment {
         final ArrayList<Instruction> instructionsList = new ArrayList<>();
         ingredientsLayout = view.findViewById(R.id.ingredientsList);
         measurementsLayout = view.findViewById(R.id.measurementsList);
+        favoriteButton = view.findViewById(R.id.favouriteRecipe);
+        favoriteButton.setEnabled(true);
 
         final DatabaseHandler db = new DatabaseHandler(getContext());
         final ArrayList<Recipe> recipes = db.getAllRecipes();
@@ -157,6 +163,32 @@ public class DetailedRecipe extends Fragment {
                                 }
                             });
 
+                            favoriteButton.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    DatabaseHandler db = new DatabaseHandler(getContext());
+                                    favoriteButton.setEnabled(false);
+                                    Favorite favorite = new Favorite(title, image);
+                                    ArrayList<Favorite> favorites = db.getAllFavorites();
+                                    boolean foundMatch = false;
+                                    for(int i = 0; i < favorites.size(); i++) {
+                                        if(title.equals(favorites.get(i).getName())) {
+                                            foundMatch = true;
+                                        }
+                                    }
+                                    if(foundMatch) {
+                                        Toast toast = Toast.makeText(getContext(), "Recipe Already Favorited!", Toast.LENGTH_SHORT);
+                                        toast.show();
+                                    } else {
+                                        db.addFavorite(favorite);
+                                        Toast toast = Toast.makeText(getContext(), "Favorite added!", Toast.LENGTH_SHORT);
+                                        toast.show();
+                                        Navigation.findNavController(v).navigate(R.id.favoritesFragment);
+                                    }
+
+
+                                }
+                            });
 
 
 

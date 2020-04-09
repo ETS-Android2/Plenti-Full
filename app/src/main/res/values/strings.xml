@@ -23,5 +23,6 @@
     <string name="icons_eight">icons8.com</string>
     <string name="images_title">Images</string>
     <string name="unsplash_text">unsplash.com</string>
+    <string name="favoritesMessage">Add Favorites!</string>
 
 </resources>
