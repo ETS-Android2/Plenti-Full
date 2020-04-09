@@ -14,5 +14,6 @@
     <color name="settingsButtonTwo">#8FC6C4</color>
     <color name="settingsButtonThree">#A3D49D</color>
     <color name="settingsButtonFour">#F5D80C</color>
-
+    <color name="recipebackgroundColourDark">#efe2a2</color>
+    <color name="greyText">#444444</color>
 </resources>

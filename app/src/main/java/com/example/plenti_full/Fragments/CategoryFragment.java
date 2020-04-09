@@ -5,11 +5,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,11 +15,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.plenti_full.API.RecipeSingleton;
-import com.example.plenti_full.CustomCategoryAdapter;
+import com.example.plenti_full.Adapters.CustomCategoryAdapter;
 import com.example.plenti_full.DatabaseHandler;
 import com.example.plenti_full.Javabeans.Recipe;
 import com.example.plenti_full.R;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;

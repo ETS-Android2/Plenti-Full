@@ -1,9 +1,13 @@
 package com.example.plenti_full.Fragments;
 
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,12 +22,16 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.plenti_full.API.RecipeSingleton;
+import com.example.plenti_full.Adapters.CustomInstructionAdapter;
+import com.example.plenti_full.Javabeans.Instruction;
 import com.example.plenti_full.R;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -46,6 +54,8 @@ public class RandomRecipe extends Fragment {
     private TextView areaLabel;
     private TextView tagsLabel;
     private TextView instructions;
+    private String youtubeUrl;
+    private ImageView youtubeButton;
 
     public RandomRecipe() {
         // Required empty public constructor
@@ -58,6 +68,7 @@ public class RandomRecipe extends Fragment {
         // Inflate the layout for this fragment
         final View view =  inflater.inflate(R.layout.fragment_random_recipe, container, false);
 
+        final ArrayList<Instruction> instructionsList = new ArrayList<>();
         ingredientsLayout = view.findViewById(R.id.randomIngredientsList);
         measurementsLayout = view.findViewById(R.id.randomMeasurementsList);
         url = "https://www.themealdb.com/api/json/v1/1/random.php";
@@ -72,30 +83,39 @@ public class RandomRecipe extends Fragment {
                             int stepper = 1;
 
 
-                            JSONObject category = jsonArray.getJSONObject(0);
-                            image = category.getString("strMealThumb");
+                            JSONObject recipe = jsonArray.getJSONObject(0);
+                            image = recipe.getString("strMealThumb");
                             recipeImage = view.findViewById(R.id.randomRecipeImage);
                             Picasso.get().load(image)
                                     .resize(280, 280).centerCrop().into(recipeImage);
 
-                            title = category.getString("strMeal");
+                            title = recipe.getString("strMeal");
                             recipeTitle = view.findViewById(R.id.randomRecipeTitle);
                             recipeTitle.setText(title);
 
-                            categoryString = category.getString("strCategory");
+                            categoryString = recipe.getString("strCategory");
                             categoryLabel = view.findViewById(R.id.randomRecipeCategory);
                             categoryLabel.setText(categoryString);
 
-                            areaString = category.getString("strArea");
+                            areaString = recipe.getString("strArea");
                             areaLabel = view.findViewById(R.id.randomRecipeArea);
                             areaLabel.setText(areaString);
 
 
-                            instructionsString = category.getString("strInstructions");
-                            instructions = view.findViewById(R.id.randomCookInstructions);
-                            instructions.setText(instructionsString);
+                            instructionsString = recipe.getString("strInstructions");
+                            instructionsString = instructionsString.replaceAll("(\\r)", "");
+                            String[] instructionArray = instructionsString.split("\n");
+                            for(int i = 0; i < instructionArray.length; i++) {
+                                if(instructionArray[i].isEmpty()) {
 
-                            tagsString = category.getString("strTags");
+                                } else {
+                                    instructionsList.add(new Instruction(i, instructionArray[i]));
+                                    Log.d("TEST", instructionArray[i]);
+                                }
+
+                            }
+
+                            tagsString = recipe.getString("strTags");
                             tagsLabel = view.findViewById(R.id.randomRecipeTags);
                             ImageView tagsImage = view.findViewById(R.id.randomTagImage);
                             String[] tags = tagsString.split(",");
@@ -108,14 +128,22 @@ public class RandomRecipe extends Fragment {
                             }
 
 
-
+                            youtubeButton = view.findViewById(R.id.videoButton);
+                            youtubeUrl = recipe.getString("strYoutube");
+                            youtubeButton.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(youtubeUrl));
+                                    startActivity(intent);
+                                }
+                            });
 
 
 
                             for (int i = 0; i < stepper; i++) {
 
-                                ingredients = category.getString("strIngredient" + stepper);
-                                measurements = category.getString("strMeasure" + stepper);
+                                ingredients = recipe.getString("strIngredient" + stepper);
+                                measurements = recipe.getString("strMeasure" + stepper);
                                 if(ingredients.isEmpty()) {
                                     Log.d("TEST", "Empty string!");
 
@@ -145,7 +173,10 @@ public class RandomRecipe extends Fragment {
             }
         });
         RecipeSingleton.getInstance(getContext()).getRequestQueue().add(request);
-
+        CustomInstructionAdapter adapter = new CustomInstructionAdapter(instructionsList, getContext());
+        RecyclerView recyclerView = view.findViewById(R.id.randomInstuctionsRecyclerView);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         return view;
     }
