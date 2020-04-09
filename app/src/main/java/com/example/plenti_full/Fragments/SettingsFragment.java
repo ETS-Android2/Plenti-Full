@@ -10,8 +10,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.SeekBar;
+import android.widget.TextView;
 
 import com.example.plenti_full.R;
+
+import static com.example.plenti_full.Fragments.CategoryFragment.spanCount;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -44,6 +48,30 @@ public class SettingsFragment extends Fragment {
                 Navigation.findNavController(v).navigate(R.id.creditsPage);
             }
         });
+
+
+
+        final TextView spanValue = view.findViewById(R.id.seekValue);
+        SeekBar seekBar = view.findViewById(R.id.columnNumberSeekBar);
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                spanValue.setText(String.valueOf(progress));
+                spanCount = progress;
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+        seekBar.setProgress(spanCount);
 
         return view;
     }

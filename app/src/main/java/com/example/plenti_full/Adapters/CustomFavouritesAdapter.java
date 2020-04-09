@@ -1,6 +1,7 @@
 package com.example.plenti_full.Adapters;
 
 import android.content.Context;
+import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +28,8 @@ public class CustomFavouritesAdapter extends RecyclerView.Adapter<CustomFavourit
     private ArrayList<Favorite> favorites;
     private Context context;
     ImageView recipeImage;
+
+
 
 
     public CustomFavouritesAdapter(ArrayList<Favorite> favorites, Context context){
