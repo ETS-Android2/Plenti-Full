@@ -1,7 +1,6 @@
-package com.example.plenti_full;
+package com.example.plenti_full.Adapters;
 
 import android.content.Context;
-import android.media.Image;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.plenti_full.DatabaseHandler;
 import com.example.plenti_full.Javabeans.Recipe;
+import com.example.plenti_full.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

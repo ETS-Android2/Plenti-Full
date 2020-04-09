@@ -1,10 +1,13 @@
 package com.example.plenti_full.Fragments;
 
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,8 +21,10 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.example.plenti_full.Adapters.CustomInstructionAdapter;
 import com.example.plenti_full.DatabaseHandler;
 
+import com.example.plenti_full.Javabeans.Instruction;
 import com.example.plenti_full.Javabeans.Recipe;
 import com.example.plenti_full.R;
 import com.example.plenti_full.API.RecipeSingleton;
@@ -28,12 +33,10 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
-import static com.example.plenti_full.CustomCategoryAdapter.mealName;
-import static java.security.AccessController.getContext;
+import static com.example.plenti_full.Adapters.CustomCategoryAdapter.mealName;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -48,6 +51,7 @@ public class DetailedRecipe extends Fragment {
     private String areaString;
     private String tagsString;
     private String instructionsString;
+    private String youtubeUrl;
     private LinearLayout ingredientsLayout;
     private LinearLayout measurementsLayout;
     private ImageView recipeImage;
@@ -56,6 +60,7 @@ public class DetailedRecipe extends Fragment {
     private TextView areaLabel;
     private TextView tagsLabel;
     private TextView instructions;
+    private ImageView youtubeButton;
 
     public DetailedRecipe() {
         // Required empty public constructor
@@ -68,6 +73,7 @@ public class DetailedRecipe extends Fragment {
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_detailed_recipe, container, false);
 
+        final ArrayList<Instruction> instructionsList = new ArrayList<>();
         ingredientsLayout = view.findViewById(R.id.ingredientsList);
         measurementsLayout = view.findViewById(R.id.measurementsList);
 
@@ -93,30 +99,35 @@ public class DetailedRecipe extends Fragment {
                             int stepper = 1;
 
 
-                            JSONObject category = jsonArray.getJSONObject(0);
-                            image = category.getString("strMealThumb");
+                            final JSONObject recipe = jsonArray.getJSONObject(0);
+                            image = recipe.getString("strMealThumb");
                             recipeImage = view.findViewById(R.id.recipeImage);
                             Picasso.get().load(image)
                                     .resize(280, 280).centerCrop().into(recipeImage);
 
-                            title = category.getString("strMeal");
+                            title = recipe.getString("strMeal");
                             recipeTitle = view.findViewById(R.id.recipeTitle);
                             recipeTitle.setText(title);
 
-                            categoryString = category.getString("strCategory");
+                            categoryString = recipe.getString("strCategory");
                             categoryLabel = view.findViewById(R.id.recipeCategory);
                             categoryLabel.setText(categoryString);
 
-                            areaString = category.getString("strArea");
+                            areaString = recipe.getString("strArea");
                             areaLabel = view.findViewById(R.id.recipeArea);
                             areaLabel.setText(areaString);
 
 
-                            instructionsString = category.getString("strInstructions");
-                            instructions = view.findViewById(R.id.cookInstructions);
-                            instructions.setText(instructionsString);
+                            instructionsString = recipe.getString("strInstructions");
+                            instructionsString = instructionsString.replaceAll("(\\r)", "");
+                            String[] instructionArray = instructionsString.split("\n");
+                            for(int i = 0; i < instructionArray.length; i++) {
 
-                            tagsString = category.getString("strTags");
+                                instructionsList.add(new Instruction(i, instructionArray[i]));
+
+                            }
+
+                            tagsString = recipe.getString("strTags");
                             tagsLabel = view.findViewById(R.id.recipeTags);
                             ImageView tagsImage = view.findViewById(R.id.tagImage);
                             String[] tags = tagsString.split(",");
@@ -129,14 +140,23 @@ public class DetailedRecipe extends Fragment {
                             }
 
 
+                            youtubeButton = view.findViewById(R.id.videoButton);
+                            youtubeUrl = recipe.getString("strYoutube");
+                            youtubeButton.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(youtubeUrl));
+                                    startActivity(intent);
+                                }
+                            });
 
 
 
 
                             for (int i = 0; i < stepper; i++) {
 
-                                ingredients = category.getString("strIngredient" + stepper);
-                                measurements = category.getString("strMeasure" + stepper);
+                                ingredients = recipe.getString("strIngredient" + stepper);
+                                measurements = recipe.getString("strMeasure" + stepper);
                                 if(ingredients.isEmpty()) {
                                     Log.d("TEST", "Empty string!");
 
@@ -166,7 +186,10 @@ public class DetailedRecipe extends Fragment {
             }
         });
         RecipeSingleton.getInstance(getContext()).getRequestQueue().add(request);
-
+        CustomInstructionAdapter adapter = new CustomInstructionAdapter(instructionsList, getContext());
+        RecyclerView recyclerView = view.findViewById(R.id.instructionsRecylerView);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
 
 
