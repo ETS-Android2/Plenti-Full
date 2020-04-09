@@ -42,6 +42,7 @@ import static com.example.plenti_full.Adapters.CustomCategoryAdapter.mealName;
  * A simple {@link Fragment} subclass.
  */
 public class DetailedRecipe extends Fragment {
+    private int counter = 0;
     private String url;
     private String ingredients;
     private String measurements;
@@ -122,8 +123,13 @@ public class DetailedRecipe extends Fragment {
                             instructionsString = instructionsString.replaceAll("(\\r)", "");
                             String[] instructionArray = instructionsString.split("\n");
                             for(int i = 0; i < instructionArray.length; i++) {
+                                if(instructionArray[i].length() > 5) {
+                                    counter++;
+                                    instructionsList.add(new Instruction(counter, instructionArray[i]));
+                                    Log.d("TEST", instructionArray[i]);
+                                } else {
 
-                                instructionsList.add(new Instruction(i, instructionArray[i]));
+                                }
 
                             }
 
@@ -131,7 +137,8 @@ public class DetailedRecipe extends Fragment {
                             tagsLabel = view.findViewById(R.id.recipeTags);
                             ImageView tagsImage = view.findViewById(R.id.tagImage);
                             String[] tags = tagsString.split(",");
-                            if(tags[0] == "null") {
+                            String tag = tags[0];
+                            if(tags[0].equals("null") || tags[0].contains(categoryString)) {
                                 tagsLabel.setText("");
 
                                 tagsImage.setVisibility(View.INVISIBLE);

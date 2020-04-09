@@ -37,6 +37,7 @@ import java.util.ArrayList;
  * A simple {@link Fragment} subclass.
  */
 public class RandomRecipe extends Fragment {
+    private int counter = 0;
     private String url;
     private String ingredients;
     private String measurements;
@@ -106,11 +107,12 @@ public class RandomRecipe extends Fragment {
                             instructionsString = instructionsString.replaceAll("(\\r)", "");
                             String[] instructionArray = instructionsString.split("\n");
                             for(int i = 0; i < instructionArray.length; i++) {
-                                if(instructionArray[i].isEmpty()) {
-
-                                } else {
-                                    instructionsList.add(new Instruction(i, instructionArray[i]));
+                                if(instructionArray[i].length() > 5) {
+                                    counter++;
+                                    instructionsList.add(new Instruction(counter, instructionArray[i]));
                                     Log.d("TEST", instructionArray[i]);
+                                } else {
+
                                 }
 
                             }
