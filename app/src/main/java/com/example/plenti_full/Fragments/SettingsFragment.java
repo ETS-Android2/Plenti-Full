@@ -37,6 +37,13 @@ public class SettingsFragment extends Fragment {
             }
         });
 
+        Button creditsButton = view.findViewById(R.id.creditsButton);
+        creditsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigate(R.id.creditsPage);
+            }
+        });
 
         return view;
     }

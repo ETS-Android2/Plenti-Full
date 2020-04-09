@@ -69,6 +69,9 @@
         <action
             android:id="@+id/action_settingsFragment_to_tutorialViewPager"
             app:destination="@id/tutorialViewPager" />
+        <action
+            android:id="@+id/creditsPage"
+            app:destination="@id/credits" />
     </fragment>
     <fragment
         android:id="@+id/tutorialLayoutFragment"
@@ -80,5 +83,10 @@
         android:name="com.example.plenti_full.Fragments.TutorialViewPager"
         android:label="fragment_tutorial_view_pager"
         tools:layout="@layout/fragment_tutorial_view_pager" />
+    <fragment
+        android:id="@+id/credits"
+        android:name="com.example.plenti_full.Fragments.credits"
+        android:label="credits_fragment"
+        tools:layout="@layout/credits_fragment" />
 
 </navigation>

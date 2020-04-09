@@ -16,5 +16,12 @@
     <string name="settings_button_two_text">Spin</string>
     <string name="settings_button_three_text">Spin</string>
     <string name="settings_button_four_text">Credits</string>
+    <string name="creditsTitle">Developers</string>
+    <string name="owen_name">Owen Bick</string>
+    <string name="nick_name">Nicholas Tavares</string>
+    <string name="iconsTitle">Icons</string>
+    <string name="icons_eight">icons8.com</string>
+    <string name="images_title">Images</string>
+    <string name="unsplash_text">unsplash.com</string>
 
 </resources>
