@@ -48,8 +48,7 @@ public class CategoryFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_category, container, false);
-        DatabaseHandler db = new DatabaseHandler(getContext());
-        recipes.add(new Recipe("12345", "Recipe Item", "https://i.stack.imgur.com/yZlqh.png"));
+        final DatabaseHandler db = new DatabaseHandler(getContext());
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
@@ -57,7 +56,6 @@ public class CategoryFragment extends Fragment {
                     public void onResponse(JSONObject response) {
                         try {
                             JSONArray jsonArray = response.getJSONArray("meals");
-                            DatabaseHandler db = new DatabaseHandler(getContext());
 
                             db.deleteAllRecipes();
 
@@ -89,39 +87,6 @@ public class CategoryFragment extends Fragment {
 
 
         recipes = db.getAllRecipes();
-
-//        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, "https://www.themealdb.com/api/json/v1/1/filter.php?c=Chicken", null,
-//                new Response.Listener<JSONObject>() {
-//                    @Override
-//                    public void onResponse(JSONObject response) {
-//                        try {
-//                            JSONArray jsonArray = response.getJSONArray("meals");
-//                            for (int i = 0; i < jsonArray.length(); i++) {
-//                                JSONObject category = jsonArray.getJSONObject(i);
-//
-//                                recipes.add(new Recipe(category.getString("idMeal"),
-//                                                    category.getString("strMeal"),
-//                                                    category.getString("strMealThumb")));
-//
-//                                Log.d("TEST",  "Meal ID: '" + category.getString("idMeal") + "',  Meal Name:  '" + category.getString("strMeal") + "',  Meal URL:  '"
-//                                        + category.getString("strMealThumb") +"'");
-//
-//
-//                            }
-//                        } catch (JSONException e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-//                }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                System.out.println(error.getLocalizedMessage());
-//            }
-//        });
-//        RecipeSingleton.getInstance(getContext()).getRequestQueue().add(request);
-
-
-
 
         CustomCategoryAdapter adapter = new CustomCategoryAdapter(recipes, getContext());
         RecyclerView recyclerView = view.findViewById(R.id.categoryRecyclerView);

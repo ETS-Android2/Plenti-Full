@@ -32,8 +32,8 @@ public class CustomCategoryAdapter extends RecyclerView.Adapter<CustomCategoryAd
 
 
     public CustomCategoryAdapter(ArrayList<Recipe> recipes, Context context){
-            this.recipes = recipes;
-            this.context = context;
+        this.recipes = recipes;
+        this.context = context;
     }
 
     @NonNull
@@ -68,31 +68,29 @@ public class CustomCategoryAdapter extends RecyclerView.Adapter<CustomCategoryAd
         return recipes.size();
     }
 
-    class CustomViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+class CustomViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        protected TextView name;
-        protected ImageView image;
+    protected TextView name;
+    protected ImageView image;
 
 
-        /**
-         * Set values to textViews and imageView
-         */
-        public CustomViewHolder(View view){
-            super(view);
-            this.name = view.findViewById(R.id.recipeItemName);
-            this.image = view.findViewById(R.id.recipeItemImage);
-            image.setOnClickListener(this);
-            name.setOnClickListener(this);
-        }
-
-        //When item is clicked
-        public void onClick(View v) {
-            Navigation.findNavController(v).navigate(R.id.detailedRecipe);
-            DatabaseHandler db = new DatabaseHandler(context);
-            mealName = name.getText().toString();
-            Log.d("TEST", "Recipe Clicked!");
-        }
+    /**
+     * Set values to textViews and imageView
+     */
+    public CustomViewHolder(View view){
+        super(view);
+        this.name = view.findViewById(R.id.recipeItemName);
+        this.image = view.findViewById(R.id.recipeItemImage);
+        image.setOnClickListener(this);
+        name.setOnClickListener(this);
     }
+
+    //When item is clicked
+    public void onClick(View v) {
+        mealName = name.getText().toString();
+        Navigation.findNavController(v).navigate(R.id.detailedRecipe);
+    }
+}
 
     @Override
     public long getItemId(int position) {
