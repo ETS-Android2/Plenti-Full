@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/recipebackgroundColour"
+    tools:context=".Reciperoulette">
+
+    <TextView
+        android:id="@+id/rouletteTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/coiny"
+        android:text="@string/roulette_title"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.452"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/rouletteWheel"
+        android:layout_width="257dp"
+        android:layout_height="236dp"
+        android:src="@drawable/roulettewheel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rouletteTitle" />
+
+    <Button
+        android:id="@+id/spinButton"
+        android:layout_width="232dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="44dp"
+        android:background="@drawable/button_background"
+        android:fontFamily="@font/coiny"
+        android:text="@string/roulette_button_text"
+        android:textColor="@color/BottomNavBarColor"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rouletteWheel" />
+
+    <TextView
+        android:id="@+id/roulette_description"
+        android:layout_width="348dp"
+        android:layout_height="192dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/coiny"
+        android:paddingLeft="10dp"
+        android:text="@string/roulettetext"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinButton" />
+</androidx.constraintlayout.widget.ConstraintLayout>

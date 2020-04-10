@@ -7,8 +7,86 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.plenti_full.ui.home.HomeFragment"
+        android:name="com.example.plenti_full.Fragments.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_navigation_home_to_categoryFragment"
+            app:destination="@+id/categoryFragment"
+            app:popUpTo="@+id/navigation_home" />
+        <action
+            android:id="@+id/action_navigation_home_to_blankFragment"
+            app:destination="@+id/blankFragment"
+            app:popUpTo="@+id/navigation_home" />
+        <action
+            android:id="@+id/action_navigation_home_to_detailedRecipe"
+            app:destination="@id/detailedRecipe"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/action_navigation_home_to_reciperoulette"
+            app:destination="@+id/recipeRoulette"
+            app:launchSingleTop="false" />
+        <action
+            android:id="@+id/action_navigation_home_to_settingsFragment2"
+            app:destination="@id/settingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/categoryFragment"
+        android:name="com.example.plenti_full.Fragments.CategoryFragment"
+        android:label="Placeholder"
+        tools:layout="@layout/fragment_category" />
+    <fragment
+        android:id="@+id/blankFragment"
+        android:name="com.example.plenti_full.Fragments.CategoryFragment"
+        android:label="fragment_blank"
+        tools:layout="@layout/fragment_category" />
+    <fragment
+        android:id="@+id/detailedRecipe"
+        android:name="com.example.plenti_full.Fragments.DetailedRecipe"
+        android:label="detailedRecipe"
+        tools:layout="@layout/fragment_detailed_recipe" />
+    <fragment
+        android:id="@+id/recipeRoulette"
+        android:name="com.example.plenti_full.Fragments.RecipeRoulette"
+        android:label="recipeRoulette"
+        tools:layout="@layout/fragment_reciperoulette" />
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="com.example.plenti_full.Fragments.FavoritesFragment"
+        android:label="fragment_favorites"
+        tools:layout="@layout/fragment_favorites" />
+    <fragment
+        android:id="@+id/randomRecipe"
+        android:name="com.example.plenti_full.Fragments.RandomRecipe"
+        android:label="fragment_random_recipe"
+        tools:layout="@layout/fragment_random_recipe" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.plenti_full.Fragments.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" >
+        <action
+            android:id="@+id/action_settingsFragment_to_tutorialViewPager"
+            app:destination="@id/tutorialViewPager" />
+        <action
+            android:id="@+id/creditsPage"
+            app:destination="@id/credits" />
+    </fragment>
+    <fragment
+        android:id="@+id/tutorialLayoutFragment"
+        android:name="com.example.plenti_full.Fragments.TutorialLayoutFragment"
+        android:label="fragment_tutorial_layout"
+        tools:layout="@layout/fragment_tutorial_layout" />
+    <fragment
+        android:id="@+id/tutorialViewPager"
+        android:name="com.example.plenti_full.Fragments.TutorialViewPager"
+        android:label="fragment_tutorial_view_pager"
+        tools:layout="@layout/fragment_tutorial_view_pager" />
+    <fragment
+        android:id="@+id/credits"
+        android:name="com.example.plenti_full.Fragments.credits"
+        android:label="credits_fragment"
+        tools:layout="@layout/credits_fragment" />
 
 </navigation>

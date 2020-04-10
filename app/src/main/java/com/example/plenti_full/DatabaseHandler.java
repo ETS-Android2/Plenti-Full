@@ -6,6 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.example.plenti_full.Javabeans.Favorite;
+import com.example.plenti_full.Javabeans.Recipe;
+
 import java.util.ArrayList;
 
 /**
@@ -30,36 +33,18 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     Table Names
      */
     public static final String TABLE_RECIPES = "recipes";
+    public static final String TABLE_FAVORITES = "favorites";
+
+
 
     /*
     Column Names
      */
     public static final String COLUMN_ID = "id";
     public static final String COLUMN_NAME = "name";
-    public static final String COLUMN_CAT = "category";
-    public static final String COLUMN_INSTRUCTIONS = "instructions";
-    public static final String COLUMN_THUMB = "thumb";
-    public static final String COLUMN_VIDEO = "video";
-    public static final String COLUMN_INGREDIENT_1 = "ingredient1";
-    public static final String COLUMN_INGREDIENT_2 = "ingredient2";
-    public static final String COLUMN_INGREDIENT_3 = "ingredient3";
-    public static final String COLUMN_INGREDIENT_4 = "ingredient4";
-    public static final String COLUMN_INGREDIENT_5 = "ingredient5";
-    public static final String COLUMN_INGREDIENT_6 = "ingredient6";
-    public static final String COLUMN_INGREDIENT_7 = "ingredient7";
-    public static final String COLUMN_INGREDIENT_8 = "ingredient8";
-    public static final String COLUMN_INGREDIENT_9 = "ingredient9";
-    public static final String COLUMN_INGREDIENT_10 = "ingredient10";
-    public static final String COLUMN_INGREDIENT_11 = "ingredient11";
-    public static final String COLUMN_INGREDIENT_12 = "ingredient12";
-    public static final String COLUMN_INGREDIENT_13 = "ingredient13";
-    public static final String COLUMN_INGREDIENT_14 = "ingredient14";
-    public static final String COLUMN_INGREDIENT_15 = "ingredient15";
-    public static final String COLUMN_INGREDIENT_16 = "ingredient16";
-    public static final String COLUMN_INGREDIENT_17 = "ingredient17";
-    public static final String COLUMN_INGREDIENT_18 = "ingredient18";
-    public static final String COLUMN_INGREDIENT_19 = "ingredient19";
-    public static final String COLUMN_INGREDIENT_20 = "ingredient20";
+
+
+    public static final String COLUMN_IMAGE = "image";
 
 
 
@@ -67,30 +52,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     /*
     CREATE TABLE STATEMENT
      */
+
+
     public static final String CREATE_RECIPE_TABLE = "CREATE TABLE " +
             TABLE_RECIPES + " (" + COLUMN_ID + " INTEGER PRIMARY KEY," +
-            COLUMN_NAME + " TEXT," + COLUMN_CAT + " TEXT," + COLUMN_INSTRUCTIONS + " TEXT," + COLUMN_THUMB + " TEXT,"
-            + COLUMN_INGREDIENT_1 + " TEXT,"
-            + COLUMN_INGREDIENT_2 + " TEXT,"
-            + COLUMN_INGREDIENT_3 + " TEXT,"
-            + COLUMN_INGREDIENT_4 + " TEXT,"
-            + COLUMN_INGREDIENT_5 + " TEXT,"
-            + COLUMN_INGREDIENT_6 + " TEXT,"
-            + COLUMN_INGREDIENT_7 + " TEXT,"
-            + COLUMN_INGREDIENT_8 + " TEXT,"
-            + COLUMN_INGREDIENT_9 + " TEXT,"
-            + COLUMN_INGREDIENT_10 + " TEXT,"
-            + COLUMN_INGREDIENT_11 + " TEXT,"
-            + COLUMN_INGREDIENT_12 + " TEXT,"
-            + COLUMN_INGREDIENT_13 + " TEXT,"
-            + COLUMN_INGREDIENT_14 + " TEXT,"
-            + COLUMN_INGREDIENT_15 + " TEXT,"
-            + COLUMN_INGREDIENT_16 + " TEXT,"
-            + COLUMN_INGREDIENT_17 + " TEXT,"
-            + COLUMN_INGREDIENT_18 + " TEXT,"
-            + COLUMN_INGREDIENT_19 + " TEXT,"
-            + COLUMN_INGREDIENT_20 + " TEXT,"
-            + COLUMN_VIDEO + " TEXT)";
+            COLUMN_NAME + " TEXT," + COLUMN_IMAGE + " TEXT)";
+
+    public static final String CREATE_FAVORITES_TABLE = "CREATE TABLE " +
+            TABLE_FAVORITES + " (" + COLUMN_ID + " INTEGER PRIMARY KEY," +
+            COLUMN_NAME + " TEXT," + COLUMN_IMAGE + " TEXT)";
 
 
     public DatabaseHandler(Context context) {
@@ -100,6 +70,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_RECIPE_TABLE);
+        db.execSQL(CREATE_FAVORITES_TABLE);
+
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -109,11 +81,60 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     /*
     INSERT RECORDS
      */
+    public void addRecipe(Recipe recipe){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_NAME, recipe.getName());
+        values.put(COLUMN_IMAGE, recipe.getImage());
+        db.insert(TABLE_RECIPES, null, values);
+        db.close();
+    }
+
+    public void addFavorite(Favorite favorite){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_NAME, favorite.getName());
+        values.put(COLUMN_IMAGE, favorite.getImage());
+        db.insert(TABLE_FAVORITES, null, values);
+        db.close();
+    }
+
+
 
 
     /*
     RETRIEVE RECORDS
      */
+
+
+    public ArrayList<Recipe> getAllRecipes(){
+        SQLiteDatabase db  = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_RECIPES ,
+                null);
+        ArrayList<Recipe> recipes = new ArrayList<>();
+        while(cursor.moveToNext()) {
+            recipes.add(new Recipe(
+                    cursor.getString(1),
+                    cursor.getString(2)));
+        }
+        db.close();
+        return recipes;
+    }
+
+    public ArrayList<Favorite> getAllFavorites(){
+        SQLiteDatabase db  = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_FAVORITES ,
+                null);
+        ArrayList<Favorite> favorites = new ArrayList<>();
+        while(cursor.moveToNext()) {
+            favorites.add(new Favorite(
+                    cursor.getString(1),
+                    cursor.getString(2)));
+        }
+        db.close();
+        return favorites;
+    }
+
 
 
 
@@ -128,6 +149,23 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     /*
         DELETE RECORDS
      */
+    public void deleteFavorite(String favorite){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_FAVORITES, COLUMN_NAME + " = ?",
+                new String[]{favorite});
+        db.close();
+    }
+
+    public void deleteAllRecipes() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("delete from "+ TABLE_RECIPES);
+    }
+
+    public void deleteAllFavorites() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("delete from "+ TABLE_FAVORITES);
+    }
+
 
 
 }
