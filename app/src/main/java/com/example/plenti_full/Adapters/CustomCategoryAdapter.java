@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.plenti_full.DatabaseHandler;
 import com.example.plenti_full.Javabeans.Recipe;
+import static com.example.plenti_full.Fragments.CategoryFragment.spanCount;
 import com.example.plenti_full.R;
 import com.squareup.picasso.Picasso;
 
@@ -56,8 +57,17 @@ public class CustomCategoryAdapter extends RecyclerView.Adapter<CustomCategoryAd
     public void onBindViewHolder(@NonNull final CustomViewHolder holder, int position) {
 
         final Recipe recipeItem = recipes.get(position);
-        Picasso.get().load(recipeItem.getImage())
-                .resize(280, 280).centerCrop().into(imageView);
+        if(spanCount == 3) {
+            Picasso.get().load(recipeItem.getImage())
+                    .resize(260, 260).centerCrop().into(imageView);
+        } else if(spanCount == 2) {
+            Picasso.get().load(recipeItem.getImage())
+                    .resize(380, 380).centerCrop().into(imageView);
+        } else if(spanCount == 1) {
+            Picasso.get().load(recipeItem.getImage())
+                    .resize(680, 680).centerCrop().into(imageView);
+        }
+
 
         holder.name.setText(recipeItem.getName());
 

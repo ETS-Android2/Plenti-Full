@@ -24,5 +24,7 @@
     <string name="images_title">Images</string>
     <string name="unsplash_text">unsplash.com</string>
     <string name="favoritesMessage">Add Favorites!</string>
+    <string name="settingsTitle">Settings</string>
+    <string name="columnSubtitle">Number of Columns in Category</string>
 
 </resources>

@@ -34,7 +34,7 @@ import static com.example.plenti_full.Fragments.HomeFragment.url;
  */
 public class CategoryFragment extends Fragment {
 
-    int spanCount = 2;
+    public static int spanCount = 2;
     ArrayList<Recipe> recipes = new ArrayList<>();
 
 
@@ -92,7 +92,7 @@ public class CategoryFragment extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.categoryRecyclerView);
         adapter.notifyDataSetChanged();
         recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), spanCount));
         return view;
     }
 
