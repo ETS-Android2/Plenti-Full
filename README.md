@@ -17,9 +17,6 @@ Android Device with OS compatable with Android Pie
 ![Image of Splash](https://i.imgur.com/PikUleB.png) ![Image of Home](https://i.imgur.com/ipttOwj.png) ![Image of Category](https://i.imgur.com/4SFuyTt.png)
 ![Image of Roulette](https://i.imgur.com/tL27Ypv.png) ![Image of Recipe](https://i.imgur.com/VnKTdw9.png)
 
-### Database Schema
-![Image of Recipe](https://cdn.discordapp.com/attachments/550470543737094150/700488748441534496/dbSchema.png)
-
 ## Built With
 
 * [MealDB](https://www.themealdb.com/api.php) - The API that was used
