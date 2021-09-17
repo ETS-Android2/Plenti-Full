@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="620dp"
+    android:layout_height="match_parent"
     android:background="@color/recipebackgroundColour"
     android:orientation="horizontal"
     tools:context=".Fragments.DetailedRecipe">
@@ -11,15 +11,16 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:isScrollContainer="true"
         android:orientation="vertical">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/instructionsRecylerView"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_marginBottom="1dp"
+            android:layout_width="0dp"
+            android:layout_height="500dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="50dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -86,7 +87,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="168dp"
             android:src="@drawable/ic_favorite_border_black_24dp"
-            android:tint="@color/cardview_light_background"
+            android:tint="#FF0000"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.958"
             app:layout_constraintStart_toStartOf="parent"

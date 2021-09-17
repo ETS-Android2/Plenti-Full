@@ -36,7 +36,8 @@ public class CategoryFragment extends Fragment {
 
     public static int spanCount = 2;
     ArrayList<Recipe> recipes = new ArrayList<>();
-
+    CustomCategoryAdapter adapter;
+    RecyclerView recyclerView;
 
     public CategoryFragment() {
         // Required empty public constructor
@@ -58,7 +59,8 @@ public class CategoryFragment extends Fragment {
                             JSONArray jsonArray = response.getJSONArray("meals");
 
                             db.deleteAllRecipes();
-
+                            recipes.clear();
+                            ArrayList<Recipe> newRecipes = new ArrayList<>();
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject category = jsonArray.getJSONObject(i);
 
@@ -66,29 +68,36 @@ public class CategoryFragment extends Fragment {
                                 Recipe recipe = new Recipe(category.getString("idMeal"),
                                                            category.getString("strMeal"),
                                                            category.getString("strMealThumb"));
-                                recipes.add(recipe);
+
+                                newRecipes.add(recipe);
                                 db.addRecipe(recipe);
-                                Log.d("TEST",  category.getString("idMeal") + category.getString("strMeal") + "\n" + category.getString("strMealThumb") + "<<- INFO");
+                                Log.d("Recipe Info",  "ID: " + category.getString("idMeal") + ", " + "NAME: " + category.getString("strMeal") + ", " + "IMAGE: " + category.getString("strMealThumb"));
+
 
 
                             }
+                            recipes.addAll(newRecipes);
+
+                            adapter.notifyDataSetChanged();
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
                     }
+
+
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                System.out.println(error.getLocalizedMessage());
-            }
-        });
+            System.out.println(error.getLocalizedMessage());
+        }
+    });
 
         RecipeSingleton.getInstance(getContext()).getRequestQueue().add(request);
 
+        recyclerView = view.findViewById(R.id.categoryRecyclerView);
 
-        recipes = db.getAllRecipes();
-
-        CustomCategoryAdapter adapter = new CustomCategoryAdapter(recipes, getContext());
+        adapter = new CustomCategoryAdapter(recipes, getContext());
         RecyclerView recyclerView = view.findViewById(R.id.categoryRecyclerView);
         adapter.notifyDataSetChanged();
         recyclerView.setAdapter(adapter);
