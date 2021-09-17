@@ -99,7 +99,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
     }
 
+    public void UpdateRecipes(ArrayList<Recipe> Recipes) {
+        deleteAllRecipes();
 
+        for (Recipe recipe: Recipes
+             ) {
+            addRecipe(recipe);
+        }
+
+    }
 
 
     /*
